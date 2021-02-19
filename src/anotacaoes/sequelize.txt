@@ -1,0 +1,11 @@
+## criar uma migration com o sequelize-cli
+ yarn sequelize migration:create --name=create-users
+
+## executar as migrations( estão na pasta migrations)
+yarn sequelize db:migrate
+
+## desfaz última migration
+yarn sequelize db:migrate:undo
+
+## desfaz todas as migrations
+yarn sequelize db:migrate:undo:all

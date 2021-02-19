@@ -1,0 +1,13 @@
+// arquivo usado para indicar as configurações para o sequelize
+// i.e. onde estarão as models, os controlers, as migrations e as configurações do banco de dados
+// utiliza module.exports porque .sequelizerc não foi informado ao sucrase e vai ser acessado pelo sequelize
+// não sei se o sequelize já reconhece o novo padrão import/export
+
+const { resolve } = require('path');
+module.exports = {
+  config: resolve(__dirname, 'src', 'config', 'database.js'),
+  'models-path': resolve(__dirname, 'src', 'app', 'models'),
+  'migrations-path': resolve(__dirname, 'src', 'database', 'migrations'),
+  'seeders-path': resolve(__dirname, 'src', 'database', 'seeds'),
+
+}
