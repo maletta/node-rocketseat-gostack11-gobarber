@@ -2,11 +2,11 @@
 
 // a lib custom-env é usada para selecionar qual .env vou utilizar
 // uso a lib cross-env para passar para o node uma variável de ambiente NODE_ENV
-import customEnv from 'custom-env';
+const customEnv = require('custom-env');
 
 // seleciona o arquivo .env de acordo com a variável definida nos scripts do package.json
 customEnv.env(process.env.NODE_ENV);
-// console.log(process.env.DB_USER);
+console.log('process.env.NODE_ENV ', process.env.NODE_ENV);
 
 module.exports = {
   dialect: 'postgres',

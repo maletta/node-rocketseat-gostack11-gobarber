@@ -2,10 +2,11 @@
 import Sequelize from 'sequelize';
 
 import User from '../app/models/User';
+import File from '../app/models/File';
 
 import databaseConfig from '../config/database';
 
-const models = [User];
+const models = [User, File];
 
 class Database {
   constructor() {
@@ -15,7 +16,11 @@ class Database {
   init() {
     this.connection = new Sequelize(databaseConfig); // recebe a conexão
 
-    models.map((model) => model.init(this.connection)); // inicia cada model com a conexão
+    models
+      .map((model) => model.init(this.connection)) // inicia cada model com a conexão
+      .map(
+        (model) => model.associate && model.associate(this.connection.models)
+      ); // executa método associate se ele existir
   }
 }
 

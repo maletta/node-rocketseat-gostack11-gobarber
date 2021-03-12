@@ -5,7 +5,7 @@
   "license": "MIT",
   "scripts": {
     "run-sucrase-node": "sucrase-node src/server.js",
-    "dev": "cross-env NODE_ENV=dev.linux nodemon src/server.js",
+    "dev": "cross-env NODE_ENV=dev nodemon src/server.js",
     "dev:windows": "cross-env NODE_ENV=dev.windows nodemon src/server.js",
     "dev:debug": "nodemon --inspect src/server.js",
     "dev:fixLint": "eslint --fix src --ext .js"
