@@ -7,6 +7,9 @@ import File from '../models/File';
 
 class AppointmentController {
   async index(req, res) {
+    const { page = 1 } = req.query;
+    const quantityPerPage = 20;
+    const pageOffset = (page - 1) * quantityPerPage;
     const appointments = await Appointment.findAll({
       where: {
         user_id: req.userId,
@@ -14,6 +17,10 @@ class AppointmentController {
       },
       attributes: ['id', 'date'],
       order: ['date'],
+      // offset faz um deslocamento para selecionar um range específico de resultados
+      // usado para fazer paginação dos resultados
+      // se page igual 1 vai pegar os primeros resultado, quantidade trazida === quantityPerPage
+      offset: pageOffset,
       // incluindo alias provider para fazer join com user com a chave provider_id
       // para pegar os dados do provider
       include: [
