@@ -7,6 +7,8 @@ import User from '../models/User';
 import File from '../models/File';
 import Notification from '../schemas/Notification';
 
+import Mail from '../../lib/Mail';
+
 class AppointmentController {
   async index(req, res) {
     const { page = 1 } = req.query;
@@ -153,7 +155,15 @@ class AppointmentController {
       return res.status(400).json({ error: 'Appointment id is invalid' });
     }
 
-    const appointment = await Appointment.findByPk(paramsAppointmentId);
+    const appointment = await Appointment.findByPk(paramsAppointmentId, {
+      include: [
+        {
+          model: User,
+          as: 'provider',
+          attributes: ['name', 'email'],
+        },
+      ],
+    });
 
     /**
      * Has appointment id in database
@@ -185,6 +195,14 @@ class AppointmentController {
     appointment.canceled_at = new Date();
 
     await appointment.save();
+
+    const mailMessage = {
+      to: `${appointment.provider.name} <${appointment.provider.email}>`,
+      subject: 'Agendamento cancelado',
+      html: 'Você tem um novo cancelamento',
+    };
+
+    await Mail.sendMail(mailMessage);
 
     return res.json(appointment);
   }
