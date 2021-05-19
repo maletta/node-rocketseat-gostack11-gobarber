@@ -19,6 +19,7 @@ class ScheduleController {
     const { date } = req.query;
     const parsedDate = parseISO(date);
 
+    // filtra os agendamentos entre o início dia e o final do dia
     const appointments = await Appointment.findAll({
       where: {
         provider_id: req.userId,
