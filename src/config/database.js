@@ -5,8 +5,8 @@
 const customEnv = require('custom-env');
 
 // seleciona o arquivo .env de acordo com a variável definida nos scripts do package.json
-customEnv.env(process.env.NODE_ENV);
 console.log('process.env.NODE_ENV ', process.env.NODE_ENV);
+customEnv.env(process.env.NODE_ENV);
 
 module.exports = {
   dialect: 'postgres',

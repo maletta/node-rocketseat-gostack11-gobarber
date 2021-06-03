@@ -1,0 +1,23 @@
+version: "3"
+services:
+  postgres:
+    image: postgres:11
+    container_name: postgres_container
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: "docker"
+    volumes:
+      - C:/Users/nsd_mmaletta/projects/docker/volumes/Postgres/gobarber:/var/lib/postgresql/data
+  mongodb:
+    image: mongo:latest
+    container_name: mongodb_container
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=root
+    ports:
+      - "27018:27017"
+    volumes:
+      -  C:/Users/nsd_mmaletta/projects/docker/volumes/MongoDB/gobarber:/data/db
+
+
