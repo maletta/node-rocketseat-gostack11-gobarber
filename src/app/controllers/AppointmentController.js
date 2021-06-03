@@ -199,7 +199,7 @@ class AppointmentController {
     const mailMessage = {
       to: `${appointment.provider.name} <${appointment.provider.email}>`,
       subject: 'Agendamento cancelado',
-      html: 'Você tem um novo cancelamento',
+      text: 'Você tem um novo cancelamento',
     };
 
     await Mail.sendMail(mailMessage);
