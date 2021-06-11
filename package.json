@@ -7,6 +7,8 @@
     "run-sucrase-node": "sucrase-node src/server.js",
     "dev": "cross-env NODE_ENV=dev nodemon src/server.js",
     "dev:windows": "cross-env NODE_ENV=dev.windows nodemon src/server.js",
+    "dev:windows:migrate": "cross-env NODE_ENV=dev.windows sequelize db:migrate",
+    "dev:windows:compose": "docker-compose -f docker-compose-windows-wsl.yml up",
     "dev:debug": "nodemon --inspect src/server.js",
     "dev:fixLint": "eslint --fix src --ext .js"
   },
