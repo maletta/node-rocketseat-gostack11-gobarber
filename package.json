@@ -10,10 +10,12 @@
     "dev:windows:migrate": "cross-env NODE_ENV=dev.windows sequelize db:migrate",
     "dev:windows:compose": "docker-compose -f docker-compose-windows-wsl.yml up",
     "dev:debug": "nodemon --inspect src/server.js",
-    "dev:fixLint": "eslint --fix src --ext .js"
+    "dev:fixLint": "eslint --fix src --ext .js",
+    "queue": "yarn nodemon src/queue.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "bee-queue": "^1.4.0",
     "custom-env": "^2.0.1",
     "date-fns": "^2.0.0-beta.5",
     "express": "^4.17.1",
