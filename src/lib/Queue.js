@@ -41,8 +41,16 @@ class Queue {
   processQueue() {
     jobs.forEach((job) => {
       const { bee, handle } = this.queues[job.key];
-      bee.process(handle);
+
+      // adiciono evento on failed para caputurar falhar ao resgatar a mensagem da fila
+      // existem outros eventos que podem ser monitorados
+      bee.on('failed', this.handleFailure).process(handle);
     });
+  }
+
+  // método executado quando ocorrer erro no consumo de mensagens da fila
+  handleFailure(job, err) {
+    console.log(`Queue ${job.queue.name}: FAILED `, err);
   }
 }
 
