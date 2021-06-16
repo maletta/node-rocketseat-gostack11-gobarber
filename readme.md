@@ -70,17 +70,17 @@ REDIS_PORT =
 ## Inicialização
 Inicie os serviços externos com docker.
 
-**Na primeira vez que executar o projeto, instale as dependências do node com:**
+Na primeira vez que executar o projeto, instale as dependências do node com:
 ```sh
 yarn install
 ```
 
-**Na primeira vez que executar o projeto, é preciso executar o script de criação das tabelas de acordo com o ORM modelado no código javascript:**
+Na primeira vez que executar o projeto, é preciso executar o script de criação das tabelas de acordo com o ORM modelado no código javascript:
 ```sh
 yarn dev:migrate
 ```
 
-**Feito isso, finalmente execute a api:**
+Feito isso, finalmente execute a api:
 ```sh
 yarn dev
 ```
