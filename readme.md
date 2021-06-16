@@ -51,7 +51,7 @@ docker-compose -f docker-compose.yml up
 ## Banco de dados
 No seu banco de dados relacional, crie uma database com o nome que quiser e informe na variável de ambiente **DB_DATABASE**.
 
-### Variáveis de ambiente
+## Variáveis de ambiente
 Após configurar os serviços com ou sem docker, é necessário informar onde esses serviços estão hospedados, a porta onde podem ser acessados e as credenciais de alguns serviços, seguindo o exemplo de variáveis de ambiente do arquivo env.sample:
 
 ```javascript
