@@ -19,17 +19,17 @@ Go barber é uma web api rest para agendamento de clientes, baseada no curso da 
 - [Sequelize](http://sequelize.org/) - ORM para banco de dados estrutados, implementado com postgreSQL
 - [MongoDB](https://www.mongodb.com/try/download/community) - banco de dados utilizado para registrar alertas de notificações de agendamentos
 - [Mongoose](https://www.npmjs.com/package/mongoose) - ORM para banco de dados não relacionais, implementado com mongoDB
+- [Redis](https://redis.io/) - banco de dados em memória utilizado para cachear valores para processos em background, utilizado como enfileirador de mensagens
 - [Docker](https://docs.docker.com/get-started/)  - ferramenta para gerenciar o ambiente das dependências da aplicação
 
 
 
-## Instalação
+## Docker
 
 >Os serviços utilizados pela aplicação já estão configurados em arquivos docker, mas você pode preferir baixá-los independentemente no seu sistema operacional.
 
 Após ter o [docker instalado](https://docs.docker.com/get-docker/), entre no diretório clone deste projeto e edite os volumes para poder armazenas os dados no seu sistema operacional.
 
-#### Docker
 ##### 🐳 Docker Linux
 Altere os volumes dos serviços no arquivo docker-compose.yml.
 Após isso basta executar o docker-compose no diretório do projeto:
@@ -70,17 +70,17 @@ REDIS_PORT =
 ## Inicialização
 Inicie os serviços externos com docker.
 
-Na primeira vez que executar o projeto, instale as dependências do node com:
+**Na primeira vez que executar o projeto, instale as dependências do node com:**
 ```sh
 yarn install
 ```
 
-Na primeira vez que executar o projeto, é preciso executar o script de criação das tabelas de acordo com o ORM modelado no código javascript:
+**Na primeira vez que executar o projeto, é preciso executar o script de criação das tabelas de acordo com o ORM modelado no código javascript:**
 ```sh
 yarn dev:migrate
 ```
 
-Feito isso, finalmente execute a api:
+**Feito isso, finalmente execute a api:**
 ```sh
 yarn dev
 ```
