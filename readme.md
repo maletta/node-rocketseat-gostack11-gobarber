@@ -48,7 +48,10 @@ cd node-rocketseat-gostack11-gobarber
 docker-compose -f docker-compose.yml up
 ```
 
-#### Variáveis de ambiente
+## Banco de dados
+No seu banco de dados relacional, crie uma database com o nome que quiser e informe na variável de ambiente **DB_DATABASE**.
+
+### Variáveis de ambiente
 Após configurar os serviços com ou sem docker, é necessário informar onde esses serviços estão hospedados, a porta onde podem ser acessados e as credenciais de alguns serviços, seguindo o exemplo de variáveis de ambiente do arquivo env.sample:
 
 ```javascript
@@ -63,9 +66,6 @@ DB_MONGO_PASSWORD =
 REDIS_HOST =
 REDIS_PORT =
 ```
-
-## Banco de dados
-No seu banco de dados relacional, crie uma database com o nome que quiser e informe na variável de ambiente **DB_DATABASE**.
 
 ## Inicialização
 Inicie os serviços externos com docker.
