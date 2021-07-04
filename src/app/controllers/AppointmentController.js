@@ -159,8 +159,13 @@ class AppointmentController {
       include: [
         {
           model: User,
-          as: 'provider',
+          as: 'provider', // alias definido no model Appointment
           attributes: ['name', 'email'],
+        },
+        {
+          model: User,
+          as: 'user', // alias definido no model Appointment
+          attributes: ['name'],
         },
       ],
     });
@@ -199,7 +204,18 @@ class AppointmentController {
     const mailMessage = {
       to: `${appointment.provider.name} <${appointment.provider.email}>`,
       subject: 'Agendamento cancelado',
+<<<<<<< HEAD
       text: 'Você tem um novo cancelamento',
+=======
+      template: 'cancelation',
+      context: {
+        provider: appointment.provider.name,
+        user: appointment.user.name,
+        date: format(appointment.date, "'dia' dd 'de' MMMM', às' H:mm'h'", {
+          locale: pt_br,
+        }),
+      },
+>>>>>>> 62a456097f9c27372f096c90cdbd6271aae3ff32
     };
 
     await Mail.sendMail(mailMessage);
