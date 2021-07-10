@@ -7,6 +7,7 @@ import UserController from './app/controllers/UserController';
 import FileController from './app/controllers/FileController';
 import ProviderController from './app/controllers/ProviderController';
 import AppointmentController from './app/controllers/AppointmentController';
+import RabbitmqController from './app/controllers/AppointmentControllerRabbitmq';
 import ScheduleController from './app/controllers/ScheduleController';
 import NotificationController from './app/controllers/NotificationController';
 
@@ -18,6 +19,8 @@ const uploads = multer(multerConfig);
 routes.post('/sessions', SessionControler.store);
 routes.post('/users', UserController.store);
 routes.get('/users', UserController.showAll);
+routes.post('/rabbit/createQueue', RabbitmqController.createQueue);
+routes.post('/rabbit/publishInQueue', RabbitmqController.publishInQueue);
 
 routes.use(AuthMiddleware);
 

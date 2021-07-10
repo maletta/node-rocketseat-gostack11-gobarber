@@ -25,6 +25,7 @@ services:
     volumes:
       - C:/Users/nsd_mmaletta/projects/docker/volumes/MongoDB/gobarber:/data/db
   redis:
+    container_name: redis_container
     image: redis
     ports:
       - "6379:6379"

@@ -6,15 +6,18 @@
   "scripts": {
     "run-sucrase-node": "sucrase-node src/server.js",
     "dev": "cross-env NODE_ENV=dev nodemon src/server.js",
+    "dev:migrate": "cross-env NODE_ENV=dev sequelize db:migrate",
     "dev:windows": "cross-env NODE_ENV=dev.windows nodemon src/server.js",
     "dev:windows:migrate": "cross-env NODE_ENV=dev.windows sequelize db:migrate",
     "dev:windows:compose": "docker-compose -f docker-compose-windows-wsl.yml up",
     "dev:debug": "nodemon --inspect src/server.js",
-    "dev:fixLint": "eslint --fix src --ext .js"
+    "dev:fixLint": "eslint --fix src --ext .js",
+    "queue": "yarn nodemon src/queue.js"
   },
   "dependencies": {
     "amqplib": "^0.8.0",
     "bcryptjs": "^2.4.3",
+    "bee-queue": "^1.4.0",
     "custom-env": "^2.0.1",
     "date-fns": "^2.0.0-beta.5",
     "express": "^4.17.1",
