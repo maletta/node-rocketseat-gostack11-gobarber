@@ -9,6 +9,11 @@ services:
       POSTGRES_PASSWORD: "docker"
     volumes:
       - /home/maletta/projects/docker/volumes/Postgres/gobarber:/var/lib/postgresql/data
+    depends_on:
+      - rabbitmq
+    # depends_on faz com que esse serviço comece a ser iniciado só depois que o rabbitmq começar a ser iniciado
+    # mas o serviço postgres não vai esperar o rabbit iniciar por completo
+    # docker tem uma order de depenciar ao começar a iniciar os serviços
   mongodb:
     image: mongo:latest
     container_name: mongodb_container
@@ -22,5 +27,16 @@ services:
   redis:
     image: redis
     ports:
-       - "6379:6379"
-
+      - "6379:6379"
+  rabbitmq:
+    image: rabbitmq:3.8-management-alpine
+    container_name: rabbitmq_container
+    hostname: rabbitmq_host
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    volumes:
+      -  /home/maletta/projects/docker/volumes/Rabbitmq/gobarber:/var/lib/rabbitmq/mnesia
+    environment:
+      - RABBITMQ_DEFAULT_USER=admin
+      - RABBITMQ_DEFAULT_PASS=admin
