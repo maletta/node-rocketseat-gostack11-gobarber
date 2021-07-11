@@ -12,7 +12,9 @@
     "dev:windows:compose": "docker-compose -f docker-compose-windows-wsl.yml up",
     "dev:debug": "nodemon --inspect src/server.js",
     "dev:fixLint": "eslint --fix src --ext .js",
-    "queue": "yarn nodemon src/queue.js"
+    "queue": "yarn nodemon src/queue.js",
+    "queueRabbitmq": "cross-env NODE_ENV=dev nodemon src/queueRabbitmq.js",
+    "queueRabbitmq:windows": "cross-env NODE_ENV=dev.windows nodemon src/queueRabbitmq.js"
   },
   "dependencies": {
     "amqplib": "^0.8.0",

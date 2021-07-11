@@ -19,8 +19,6 @@ const uploads = multer(multerConfig);
 routes.post('/sessions', SessionControler.store);
 routes.post('/users', UserController.store);
 routes.get('/users', UserController.showAll);
-routes.post('/rabbit/createQueue', RabbitmqController.createQueue);
-routes.post('/rabbit/publishInQueue', RabbitmqController.publishInQueue);
 
 routes.use(AuthMiddleware);
 
@@ -33,9 +31,12 @@ routes.post('/files', uploads.single('file'), FileController.store);
 routes.get('/appointments', AppointmentController.index);
 routes.post('/appointments', AppointmentController.store);
 routes.delete('/appointments/:id', AppointmentController.delete);
+routes.delete('/appointmentsRabbitmq/:id', RabbitmqController.delete);
 
 routes.get('/schedule', ScheduleController.index);
 routes.get('/notifications', NotificationController.index);
 routes.put('/notifications/:id', NotificationController.update);
+
+routes.post('/rabbit/publishInQueue', RabbitmqController.publishInQueue);
 
 export default routes;

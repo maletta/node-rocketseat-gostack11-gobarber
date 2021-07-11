@@ -1,15 +1,17 @@
 import { connect } from 'amqplib';
 
 export default class RabbitmqServer {
-  constructor(uri) {
+  constructor() {
     this.conn = null;
     this.channel = null;
-    this.uri = uri;
+    this.QUEUES = {
+      APPOINTMENT_CANCELATION_MAIL: 'APPOINTMENT_CANCELATION_MAIL',
+    };
   }
 
   // create connection, create channel
   async start() {
-    this.conn = await connect(this.uri);
+    this.conn = await connect(this.generateDefaultURI());
     this.channel = await this.conn.createChannel();
   }
 
@@ -19,17 +21,19 @@ export default class RabbitmqServer {
     await this.channel
       .assertQueue(queue)
       .then((response) => {
-        console.log('queue criada');
-        console.log(response);
+        console.log('create queue Rabbitmq ', queue);
+        return response;
       })
       .catch((response) => {
-        console.log('erro ao criar fila');
-        console.log(response);
+        console.log('error on create queue Rabbitmq ', queue);
+        return response;
       });
   }
 
   // publica diretamente em uma fila nomeado pelo parâmetro queue
   async publishInQueue(queue, message) {
+    console.log('******************************** ');
+    console.log('publish ', queue, message);
     return this.channel.sendToQueue(queue, Buffer.from(message));
   }
 
@@ -48,5 +52,15 @@ export default class RabbitmqServer {
       this.channel.ack(message);
     };
     this.channel.consume(queue, onMessage);
+  }
+
+  generateDefaultURI() {
+    // user and password defined in dockerfile
+    const rabbitUser = 'admin';
+    const rabbitPassword = 'admin';
+    const rabbitmqHost = process.env.RABBITMQ_HOST;
+    const rabbitmqPort = process.env.RABBITMQ_PORT;
+    const generatedURI = `amqp://${rabbitUser}:${rabbitPassword}@${rabbitmqHost}:${rabbitmqPort}`;
+    return generatedURI;
   }
 }

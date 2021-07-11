@@ -1,7 +1,6 @@
 import Bee from 'bee-queue';
 import CancellationMail from '../app/jobs/CancellationMail';
 import redisConfig from '../config/redis';
-import mailConfig from '../config/mail';
 
 // array de jobs, array de instâncias de classes que possuem principalmente
 // @key, atributo que será usado como chave para identificar as filas no redis, endereço de cacheamento
