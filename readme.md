@@ -9,7 +9,7 @@ Go barber é uma web api rest para agendamento de clientes, baseada no curso da 
 - 📅 CRUD agendamentos
 - 🔊 Notificações de consulta
 - 👮‍♀️ Autenticação wtjwt
-- 📂 Gerenciamento de filas de mensagens e serviços em segundo
+- 📂 Gerenciamento de filas de mensagens e serviços em segundo plano
 
 ## Tecnologias
 
