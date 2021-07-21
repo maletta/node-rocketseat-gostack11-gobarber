@@ -2,6 +2,8 @@ import express from 'express';
 import path from 'path';
 import * as Sentry from '@sentry/node';
 import * as Tracing from '@sentry/tracing';
+import 'express-async-errors';
+import Youch from 'youch';
 import routes from './routes';
 import './database';
 import RabbitmqServer from './lib/RabbitmqServer';
@@ -27,9 +29,6 @@ class App {
       tracesSampleRate: 1.0,
     });
 
-    this.server.use(Sentry.Handlers.requestHandler());
-    this.server.use(Sentry.Handlers.tracingHandler());
-
     this.middlewares();
     this.routes();
 
@@ -39,17 +38,12 @@ class App {
     // create sentry erros handles
     // The error handler must be before any other error middleware and after all controllers
     this.server.use(Sentry.Handlers.errorHandler());
-
-    // Optional fallthrough error handler
-    this.server.use(function onError(err, req, res, next) {
-      // The error id is attached to `res.sentry` to be returned
-      // and optionally displayed to the user for support.
-      res.statusCode = 500;
-      res.end(`${res.sentry}\n`);
-    });
+    this.exceptionError();
   }
 
   middlewares() {
+    this.server.use(Sentry.Handlers.requestHandler());
+    this.server.use(Sentry.Handlers.tracingHandler());
     this.server.use(express.json());
     this.server.use(
       '/files',
@@ -59,6 +53,15 @@ class App {
 
   routes() {
     this.server.use(routes);
+  }
+
+  async exceptionError() {
+    // Express understands  that  middleware with 4 arguments is used to handle erros
+    this.server.use(async (err, req, res, next) => {
+      const errors = await new Youch(err, req).toJSON();
+
+      res.status(500).send(errors);
+    });
   }
 
   async assertDefaultRabbitmqQueues() {
