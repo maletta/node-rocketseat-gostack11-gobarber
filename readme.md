@@ -21,6 +21,7 @@ Go barber é uma web api rest para agendamento de clientes, baseada no curso da 
 - [Mongoose](https://www.npmjs.com/package/mongoose) - ORM para banco de dados não relacionais, implementado com mongoDB
 - [Redis](https://redis.io/) - banco de dados em memória utilizado para cachear valores para processos em background, utilizado como enfileirador de mensagens
 - [Docker](https://docs.docker.com/get-started/)  - ferramenta para gerenciar o ambiente das dependências da aplicação
+- [Rabbitmq](https://www.rabbitmq.com/#getstarted) - protocolo de pub/sub para mensagens em filas, utilizado para publicar dados que serão consumidos em background por outra api
 
 
 
