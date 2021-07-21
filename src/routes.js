@@ -20,6 +20,9 @@ const uploads = multer(multerConfig);
 routes.post('/sessions', SessionControler.store);
 routes.post('/users', UserController.store);
 routes.get('/users', UserController.showAll);
+routes.get('/debug-sentry', function mainHandler() {
+  throw new Error('My first Sentry error!');
+});
 
 routes.use(AuthMiddleware);
 
