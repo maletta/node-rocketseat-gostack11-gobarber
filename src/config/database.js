@@ -1,13 +1,5 @@
 // utiliza module.exports porque vai ser acessado pelo sequelize-cli ele não reconhecer o novo import/export
 
-// a lib custom-env é usada para selecionar qual .env vou utilizar
-// uso a lib cross-env para passar para o node uma variável de ambiente NODE_ENV
-const customEnv = require('custom-env');
-
-// seleciona o arquivo .env de acordo com a variável definida nos scripts do package.json
-console.log('process.env.NODE_ENV ', process.env.NODE_ENV);
-customEnv.env(process.env.NODE_ENV);
-
 module.exports = {
   dialect: 'postgres',
   host: process.env.DB_HOST, // '192.168.0.26',

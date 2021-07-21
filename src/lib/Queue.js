@@ -1,6 +1,9 @@
 import Bee from 'bee-queue';
 import CancellationMail from '../app/jobs/CancellationMail';
-import redisConfig from '../config/redis';
+
+const customEnv = require('custom-env');
+// seleciona o arquivo .env de acordo com a variável definida nos scripts do package.json
+customEnv.env(process.env.NODE_ENV);
 
 // array de jobs, array de instâncias de classes que possuem principalmente
 // @key, atributo que será usado como chave para identificar as filas no redis, endereço de cacheamento
@@ -23,7 +26,10 @@ class Queue {
     jobs.forEach(({ key, handle }) => {
       this.queues[key] = {
         bee: new Bee(key, {
-          redis: redisConfig,
+          redis: {
+            host: process.env.REDIS_HOST,
+            port: process.env.REDIS_PORT,
+          },
         }),
         handle,
       };

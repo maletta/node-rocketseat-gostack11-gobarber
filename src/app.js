@@ -9,6 +9,14 @@ import './database';
 import RabbitmqServer from './lib/RabbitmqServer';
 import sentryConfig from './config/sentry';
 
+// a lib custom-env é usada para selecionar qual .env vou utilizar
+// uso a lib cross-env para passar para o node uma variável de ambiente NODE_ENV
+const customEnv = require('custom-env');
+
+// seleciona o arquivo .env de acordo com a variável definida nos scripts do package.json
+console.log('process.env.NODE_ENV ', process.env.NODE_ENV);
+customEnv.env(process.env.NODE_ENV);
+
 class App {
   constructor() {
     this.server = express();
