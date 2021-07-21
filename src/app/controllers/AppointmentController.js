@@ -21,7 +21,7 @@ class AppointmentController {
         user_id: req.userId,
         canceled_at: null,
       },
-      attributes: ['id', 'date'],
+      attributes: ['id', 'date', 'past', 'cancelable'],
       order: ['date'],
       // offset faz um deslocamento para selecionar um range específico de resultados
       // usado para fazer paginação dos resultados

@@ -6,6 +6,7 @@ import User from '../models/User';
 import RabbitmqServer from '../../lib/RabbitmqServer';
 
 class AppointmentController {
+  // método para teste de publicação de mensagens
   async publishInQueue(req, res) {
     const message = { name: 'mauricio', age: 12 };
     const rabbit = new RabbitmqServer();
