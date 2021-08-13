@@ -40,7 +40,7 @@ cd node-rocketseat-gostack11-gobarber
 docker-compose -f docker-compose.yml up
 ```
 
-##### 🐳 Docker Windows
+##### 🐳 Docker Windows - WSL
 Altere os volumes dos serviços no arquivo docker-compose-windows-wsl.yml.
 Após isso basta executar o docker-compose no diretório do projeto:
 
