@@ -16,7 +16,7 @@ Go barber é uma web api rest para agendamento de clientes, baseada no curso da 
 - [Javascript](https://nodejs.org/) - na plataforma Node em conjunto com Express para a criação do serviço web
 - [Express](https://nodejs.org/) - framework para criação da api
 - [PostgreSQL](https://www.postgresql.org/) - banco de dados principal, utilizado para guardar dados sensíveis de cada usuário e agendamentos
-- [Sequelize](http://sequelize.org/) - ORM para banco de dados estrutados, implementado com postgreSQL
+- [Sequelize](http://sequelize.org/) - ORM para banco de dados estruturados, implementado com postgreSQL
 - [MongoDB](https://www.mongodb.com/try/download/community) - banco de dados utilizado para registrar alertas de notificações de agendamentos
 - [Mongoose](https://www.npmjs.com/package/mongoose) - ORM para banco de dados não relacionais, implementado com mongoDB
 - [Redis](https://redis.io/) - banco de dados em memória utilizado para cachear valores para processos em background, utilizado como enfileirador de mensagens
@@ -46,7 +46,7 @@ Após isso basta executar o docker-compose no diretório do projeto:
 
 ```sh
 cd node-rocketseat-gostack11-gobarber
-docker-compose -f docker-compose.yml up
+docker-compose -f docker-compose-windows-wsl.yml up
 ```
 
 ## Banco de dados
